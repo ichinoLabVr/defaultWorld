@@ -11,13 +11,17 @@ public class UpTrigger : MonoBehaviourPunCallbacks
 
     public GameObject cam;
 
-    private void Start () {
+    private void Start()
+    {
 
     }
 
-    private void Update () {
-        if(_isStageChange && num == 1){
-            if (photonView.IsMine) {
+    private void Update()
+    {
+        if (_isStageChange && num == 1)
+        {
+            if (photonView.IsMine)
+            {
                 Transform camTransform = cam.transform;
                 Vector3 pos = camTransform.position;
                 pos.y = 2.367743f;
@@ -26,8 +30,10 @@ public class UpTrigger : MonoBehaviourPunCallbacks
             }
         }
 
-        if(!_isStageChange && num == 0) {
-            if (photonView.IsMine) {
+        if (!_isStageChange && num == 0)
+        {
+            if (photonView.IsMine)
+            {
                 Transform camTransform = cam.transform;
                 Vector3 pos = camTransform.position;
                 pos.y = 1.367743f;
@@ -40,8 +46,10 @@ public class UpTrigger : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "UpPoint"){
-            if (photonView.IsMine) {
+        if (other.gameObject.tag == "UpPoint")
+        {
+            if (photonView.IsMine)
+            {
                 _isStageChange = true;
             }
         }
@@ -50,8 +58,10 @@ public class UpTrigger : MonoBehaviourPunCallbacks
     private void OnTriggerExit(Collider other)
     {
         //離れたオブジェクトのタグが"Player"のとき
-        if(other.gameObject.tag == "UpPoint"){
-            if (photonView.IsMine) {
+        if (other.gameObject.tag == "UpPoint")
+        {
+            if (photonView.IsMine)
+            {
                 _isStageChange = false;
             }
         }

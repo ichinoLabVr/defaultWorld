@@ -1618,7 +1618,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d8c00923eb907a44ab941cf90c80e1fc, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -9283,7 +9283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67381f139d56ce841b2948a6428c6fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _positionStep: 2
   _mouseSensitive: 90
 --- !u!20 &5441612368456909743
 Camera:

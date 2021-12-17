@@ -38,6 +38,8 @@ namespace Photon.Pun
         GameObject[] Sobj;
         float ObjY = 1.0f; //スピーカー高さ
 
+        bool videoStart = false;
+
         public enum ParameterType
         {
             Float = 1,
@@ -131,7 +133,7 @@ namespace Photon.Pun
         private void Awake()
         {
             this.m_Animator = GetComponent<Animator>();
-            var videoPlayer = GetComponent<VideoPlayer>();
+            videoPlayer = GetComponent<VideoPlayer>();
             var firstgameObject = GameObject.Find("Speaker0");
             //(((PhotonNetwork.CurrentRoom.PlayerCount/8)+1)*8) - 1)
             //1列：7 8
@@ -162,19 +164,28 @@ namespace Photon.Pun
             {
                 //スピーカー再生
                 GameObject PanelPlayer = GameObject.Find("panel");
-                var videoPlayer = PanelPlayer.GetComponent<VideoPlayer>();
-                var audioSource = Sobj[0].GetComponent<AudioSource>();
+                videoPlayer = PanelPlayer.GetComponent<VideoPlayer>();
+                audioSource = Sobj[0].GetComponent<AudioSource>();
                 audioSource.time = 0f;
                 audioSource.Play();
 
                 //動画再生
                 videoPlayer.time = 0f;
                 videoPlayer.Play();
+                videoStart = true;
             }
         }
 
         private void Update()
         {
+            if (videoStart) {
+                if(videoPlayer.time > 130f){
+                    videoPlayer.Stop();
+                    audioSource.Stop();
+                    PhotonNetwork.Disconnect();
+                }
+            }
+
             if (this.m_Animator.applyRootMotion && this.photonView.IsMine == false && PhotonNetwork.IsConnected == true)
             {
                 this.m_Animator.applyRootMotion = false;
